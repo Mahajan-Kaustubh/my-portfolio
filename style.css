@@ -45,6 +45,7 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -145,13 +146,13 @@ button:focus-visible {
 
 .hero-top {
   display: flex;
-  gap: 32px;
+  gap: 40px;
   align-items: flex-start;
   margin: 8px 0 0;
 }
 
 .hero-photo-col {
-  flex: 0 0 220px;
+  flex: 0 0 38%;
 }
 
 .hero-photo {
@@ -168,11 +169,22 @@ button:focus-visible {
 .hero-text-col {
   flex: 1;
   min-width: 0;
+  padding-top: 8px;
 }
 
 @media (max-width: 640px) {
-  .hero-top { flex-direction: column; gap: 20px; }
-  .hero-photo-col { flex: none; width: 160px; }
+  .hero-top { flex-direction: column; gap: 24px; }
+
+  .hero-photo-col {
+    flex: none;
+    width: 100%;
+  }
+
+  .hero-photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .hero-text-col { padding-top: 0; }
 }
 
 .icon-row {
@@ -272,6 +284,44 @@ section:first-of-type { border-bottom: none; }
   color: var(--teal);
 }
 
+/* ---------- Timeline ---------- */
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 9px;
+  bottom: -9px;
+  width: 1px;
+  background: var(--line-strong);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -32px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--teal);
+  z-index: 1;
+}
+
 h2 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -362,7 +412,7 @@ p { color: var(--paper-dim); margin: 0 0 16px; max-width: 65ch; }
   margin-bottom: 36px;
 }
 
-.endorsements-head .script-heading {
+.script-heading {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
@@ -370,12 +420,26 @@ p { color: var(--paper-dim); margin: 0 0 16px; max-width: 65ch; }
   margin: 0 0 10px;
 }
 
-.endorsements-head .squiggle {
+.squiggle {
   display: block;
   width: 130px;
   height: 14px;
-  margin: 0 auto;
   color: var(--brass);
+}
+
+.endorsements-head .squiggle {
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-title .script-heading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 46px);
 }
 
 .endorsements-section .endorsement {
